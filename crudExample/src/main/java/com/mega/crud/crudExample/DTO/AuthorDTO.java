@@ -14,7 +14,6 @@ public class AuthorDTO {
 	private Integer id;
 	private String name;
 	
-
 	public AuthorDTO(UserEntity user) {
 		this.id = user.getId();
 		this.name = user.getName();

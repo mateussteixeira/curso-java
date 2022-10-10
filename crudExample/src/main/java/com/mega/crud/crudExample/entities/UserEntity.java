@@ -1,7 +1,22 @@
 package com.mega.crud.crudExample.entities;
 
-import javax.persistence.*;
-import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -9,6 +24,7 @@ import lombok.*;
 @Setter
 @ToString
 @Entity
+@Table(name="user_entity")
 public class UserEntity {
 
 	@Id
@@ -25,5 +41,9 @@ public class UserEntity {
     private String phone;
 	
     @Column(nullable = false, length = 50)
-    private String password;	
+    private String password;
+    
+	@OneToMany(mappedBy = "crudExample.post_entity", cascade = CascadeType.PERSIST)
+    private List<PostEntity> posts = new ArrayList<>();
+    
 }

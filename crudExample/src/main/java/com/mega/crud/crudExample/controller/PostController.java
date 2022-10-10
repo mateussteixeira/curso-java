@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mega.crud.crudExample.entities.PostEntity;
 import com.mega.crud.crudExample.exceptions.PostNotFoundException;
+import com.mega.crud.crudExample.exceptions.UserNotFoundException;
 import com.mega.crud.crudExample.services.PostService;
 
 @RestController
@@ -24,9 +25,14 @@ public class PostController {
 		return ResponseEntity.ok().body(postService.getPost(id));
 	}
 	
-	@PostMapping(path="posts")
-	public ResponseEntity<?> registerPost(@RequestBody PostEntity post){
-		return ResponseEntity.ok().body(postService.registerPost(post));
+	@PostMapping(path="posts/{id_user}")
+	public ResponseEntity<?> registerPost(@PathVariable("id_user") Integer id, @RequestBody PostEntity post) throws UserNotFoundException{
+		return ResponseEntity.ok().body(postService.registerPost(post, id));
+	}
+	
+	@GetMapping(path="posts/all")
+	public ResponseEntity<?> getAllPosts(){
+		return ResponseEntity.ok().body(postService.getAllPost());
 	}
 	
 }

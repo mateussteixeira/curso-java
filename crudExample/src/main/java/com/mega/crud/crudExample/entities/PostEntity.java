@@ -9,11 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +32,7 @@ public class PostEntity {
     @Column(nullable = false, length = 10)
 	private String date;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name="crudExample.user_entity")
 	private UserEntity user;
 	
